@@ -59,6 +59,7 @@ defmodule RcCar.MixProject do
       {:nerves_system_x86_64, "~> 1.8", runtime: false, targets: :x86_64},
       {:plug_cowboy, "~> 2.1"},
       {:plug_static_index_html, "~> 1.0"},
+      {:pigpiox, "~> 0.1"},
     ]
   end
 

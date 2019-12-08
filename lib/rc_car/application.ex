@@ -11,7 +11,7 @@ defmodule RcCar.Application do
     opts = [strategy: :one_for_one, name: RcCar.Supervisor]
     children =
       [
-      {Plug.Cowboy, scheme: :http, plug: RcCar.Router, options: [port: 8080]}
+      {Plug.Cowboy, scheme: :http, plug: RcCar.Controller, options: [port: 8080]}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)
@@ -28,9 +28,7 @@ defmodule RcCar.Application do
 
   def children(_target) do
     [
-      # Children for all targets except host
-      # Starts a worker by calling: RcCar.Worker.start_link(arg)
-      # {RcCar.Worker, arg},
+      RcCar.Vehicle
     ]
   end
 

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="jp">
+<head>
+  <meta charset="utf-8">
+    <title>RC Car Controller</title>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="assets/jquery-ui-slider-pips.min.css">
+    <script type="text/javascript" src="assets/jquery-ui-slider-pips.min.js"></script>
+
+  <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: black;
+        }
+        
+        #controller {
+  		display: flex;
+        	justify-content: center;
+        	align-items: center;
+        	height: 100vh;
+  	}
+
+        #accelerator {
+            border: 4px solid firebrick;
+            border-radius: 5px;
+            margin-right: 3rem;
+  	}
+        #accelerator-slider {
+            height: 16rem;
+            margin: 1rem 4rem;
+            background: gray;
+            border-color: gray;
+  	}
+        #accelerator-slider .ui-slider-handle {
+            background: darkred;
+            border-color: gray;
+            width: 1.6rem;
+            left: -0.4rem;
+  	}
+
+        #steering {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        	align-items: center;
+  	}
+        #steering .input-container {
+        	position: relative;
+            height: 7rem;
+            width:  7rem;
+            margin: 0.5rem;
+  	}
+        #steering .input-container .radio-button {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width:  100%;
+            margin: 0;
+            cursor: pointer;
+  	}
+
+        #steering .input-container .radio-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width:  100%;
+            border: 4px solid #079ad9;
+            border-radius: 5px;
+            /*transition: transform 300ms ease;*/
+        }
+        #steering .input-container .radio-icon svg {
+            fill: #079ad9;
+            height: 60%;
+            width:  60%;
+        }
+
+        #steering .input-container .radio-button:checked + .radio-icon {
+            background-color: #079ad9;
+            border: 2px solid #079ad9;
+            color: white;
+            transform: scale(1.1, 1.1);
+        }
+        #steering .input-container .radio-button:checked + .radio-icon  svg {
+            fill: white;
+            background-color: #079ad9;
+  	}
+  </style>
+</head>
+
+<body>
+<div id="controller">
+  <div id="accelerator">
+    <div id="accelerator-slider"></div>
+  </div>
+  
+  <div id="steering">
+    <div class="input-container">
+      <input id="left" class="radio-button" type="radio" name="steering" value="L" />
+      <div class="radio-icon">
+        <svg viewBox="0 0 48 48" hxmlns="http://www.w3.org/2000/svg">
+          <path d="M 5.2126809,20.194307 38.211333,0.68572534 c 2.68114,-1.58431502 6.787225,-0.0468967 6.787225,3.87171486 V 43.565233 c 0,3.515482 -3.815465,5.634141 -6.787225,3.871714 L 5.2126809,27.937736 c -2.943631,-1.734297 -2.95301,-6.009123 0,-7.743429 z" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input id="straight" class="radio-button" type="radio" name="steering" value="S" />
+      <div class="radio-icon">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 42.453333,5.4266628 C 41.92,3.853329 40.426667,2.73333 38.666667,2.73333 H 9.3333329 c -1.7599996,0 -3.2266662,1.119999 -3.7866662,2.6933328 L 0,21.399995 V 42.733333 C 0,44.2 1.2,45.4 2.666667,45.4 H 5.3333333 C 6.8,45.4 8,44.2 8,42.733333 v -2.666666 h 32 v 2.666666 C 40,44.2 41.2,45.4 42.666667,45.4 h 2.666666 C 46.8,45.4 48,44.2 48,42.733333 V 21.399995 Z M 9.3333329,32.066667 c -2.2133329,0 -3.9999996,-1.786667 -3.9999996,-4 0,-2.213338 1.7866667,-4.000006 3.9999996,-4.000006 2.2133341,0 4.0000001,1.786668 4.0000001,4.000006 0,2.213333 -1.786666,4 -4.0000001,4 z m 29.3333341,0 c -2.213334,0 -4,-1.786667 -4,-4 0,-2.213338 1.786666,-4.000006 4,-4.000006 2.213333,0 4,1.786668 4,4.000006 0,2.213333 -1.786667,4 -4,4 z M 5.3333333,18.733328 9.3333329,6.7333295 H 38.666667 l 4,11.9999985 z" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input id="right" class="radio-button" type="radio" name="steering" value="R" />
+      <div class="radio-icon">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 42.787316,20.194307 9.7886641,0.68572534 C 7.1075241,-0.89858968 3.0014391,0.63882864 3.0014391,4.5574402 V 43.565233 c 0,3.515482 3.815465,5.634141 6.787225,3.871714 L 42.787316,27.937736 c 2.943631,-1.734297 2.95301,-6.009123 0,-7.743429 z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<script>
+// accelerator action
+$('#accelerator-slider').slider({
+    orientation: 'vertical',
+  min: 0,
+    max: 6,
+    value: 3,
+}).slider('pips', {
+    rest:  'label',
+    labels: ['-3', '-2', '-1', '0', '+1', '+2', '+3'],
+});
+
+$('#accelerator-slider').on('slidechange', function(event, ui) {
+  	  console.log(ui.value);
+  	  $.ajax({
+        url:  './accelerator',
+          type: 'PUT',
+          data: {
+          'value': [-100, -66, -33, 0, 33, 66, 100][ui.value]
+          },
+        dataType: 'text',
+      }).always(function(arg1, status, arg2) {
+      	  // 通信完了時の処理
+      });
+});
+
+// steering action
+$('#straight').prop('checked', true);
+
+$('.radio-button').change(function() {
+    var selected = $(this).val();
+    console.log(selected);
+  	  $.ajax({
+        url:  './steering',
+          type: 'PUT',
+          data: {
+            'value': selected
+          },
+        dataType: 'text',
+      }).always(function(arg1, status, arg2) {
+      	  // 通信完了時の処理
+      });
+});
+</script>
+</body>
+</html>
