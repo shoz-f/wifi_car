@@ -1,6 +1,6 @@
-defmodule RcCar do
+defmodule WifiCar do
   @moduledoc """
-  Documentation for RcCar.
+  Documentation for WifiCar.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule RcCar do
 
   ## Examples
 
-      iex> RcCar.hello
+      iex> WifiCar.hello
       :world
 
   """

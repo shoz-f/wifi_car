@@ -1,7 +1,7 @@
-defmodule RcCar.MixProject do
+defmodule WifiCar.MixProject do
   use Mix.Project
 
-  @app :rc_car
+  @app :wifi_car
   @version "0.1.0"
   @all_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4, :bbb, :x86_64]
 
@@ -30,7 +30,7 @@ defmodule RcCar.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      mod: {RcCar.Application, []},
+      mod: {WifiCar.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

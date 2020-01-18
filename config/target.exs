@@ -28,9 +28,7 @@ config :nerves_firmware_ssh,
 
 # Setting the node_name will enable Erlang Distribution.
 # Only enable this for prod if you understand the risks.
-node_name = if Mix.env() != :prod, do: "rc_car"
-
-target = System.get_env("MIX_TARGET")
+node_name = if Mix.env() != :prod, do: "wifi_car"
 
 #config :nerves_init_gadget,
 #  ifname: "usb0",
@@ -39,36 +37,12 @@ target = System.get_env("MIX_TARGET")
 #  node_name: node_name,
 #  node_host: :mdns_domain
 
-if target == "rpi3" do
   config :nerves_init_gadget,
     ifname: "wlan0",
     address_method: :dhcp,
     mdns_domain: "nerves.local",
     node_name: node_name,
     node_host: :mdns_domain
-else
-  config :nerves_init_gadget,
-    ifname: "eth0",
-    address_method: :dhcpd,
-    mdns_domain: "nerves.local",
-    node_name: node_name,
-    node_host: :mdns_domain
-end
-
-# Import target specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-# Uncomment to use target specific configurations
-
-# import_config "#{Mix.target()}.exs"
-
-# Statically assign an address
-# config :nerves_network, :default,
-#   eth0: [
-#   ipv4_address_method: :static,
-#   ipv4_address: "192.168.0.2",
-#   ipv4_subnet_mask: "255.255.255.0",
-#   nameservers: ["8.8.8.8", "8.8.4.4"]
-# ]
 
 # Configure wireless settings
 key_mgmt = System.get_env("NERVES_NETWORK_KEY_MGMT") || "WPA-PSK"
@@ -83,4 +57,8 @@ config :nerves_network, :default,
     key_mgmt: String.to_atom(key_mgmt)
   ]
 
-config :nerves_leds, names: [green: "led0"]
+# Import target specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+# Uncomment to use target specific configurations
+
+# import_config "#{Mix.target()}.exs"

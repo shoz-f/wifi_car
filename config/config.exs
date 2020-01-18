@@ -5,7 +5,7 @@
 # is restricted to this project.
 use Mix.Config
 
-config :rc_car, target: Mix.target()
+config :wifi_car, target: Mix.target()
 
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.

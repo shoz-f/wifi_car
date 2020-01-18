@@ -1,10 +1,10 @@
-defmodule RcCar.Controller do
+defmodule WifiCar.Controller do
   use Plug.Router
   
-  alias RcCar.Vehicle
+  alias WifiCar.Vehicle
 
   plug Plug.Static.IndexHtml, at: "/"
-  plug Plug.Static, at: "/", from: :rc_car
+  plug Plug.Static, at: "/", from: :wifi_car
 
   plug :match
   plug Plug.Parsers, parsers: [:urlencoded]

@@ -2,7 +2,7 @@
 <html lang="jp">
 <head>
   <meta charset="utf-8">
-    <title>RC Car Controller</title>
+    <title>Wifi Car Controller</title>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -12,90 +12,90 @@
     <script type="text/javascript" src="assets/jquery-ui-slider-pips.min.js"></script>
 
   <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
         
-        body {
-            background-color: black;
-        }
+    body {
+      background-color: black;
+    }
         
-        #controller {
+    #controller {
   		display: flex;
-        	justify-content: center;
-        	align-items: center;
-        	height: 100vh;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
   	}
 
-        #accelerator {
-            border: 4px solid firebrick;
-            border-radius: 5px;
-            margin-right: 3rem;
+    #accelerator {
+      border: 4px solid firebrick;
+      border-radius: 5px;
+      margin-right: 3rem;
   	}
-        #accelerator-slider {
-            height: 16rem;
-            margin: 1rem 4rem;
-            background: gray;
-            border-color: gray;
+    #accelerator-slider {
+      height: 16rem;
+      margin: 1rem 4rem;
+      background: gray;
+      border-color: gray;
   	}
-        #accelerator-slider .ui-slider-handle {
-            background: darkred;
-            border-color: gray;
-            width: 1.6rem;
-            left: -0.4rem;
-  	}
-
-        #steering {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        	align-items: center;
-  	}
-        #steering .input-container {
-        	position: relative;
-            height: 7rem;
-            width:  7rem;
-            margin: 0.5rem;
-  	}
-        #steering .input-container .radio-button {
-            opacity: 0;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width:  100%;
-            margin: 0;
-            cursor: pointer;
+    #accelerator-slider .ui-slider-handle {
+      background: darkred;
+      border-color: gray;
+      width: 1.6rem;
+      left: -0.4rem;
   	}
 
-        #steering .input-container .radio-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            width:  100%;
-            border: 4px solid #079ad9;
-            border-radius: 5px;
-            /*transition: transform 300ms ease;*/
-        }
-        #steering .input-container .radio-icon svg {
-            fill: #079ad9;
-            height: 60%;
-            width:  60%;
-        }
-
-        #steering .input-container .radio-button:checked + .radio-icon {
-            background-color: #079ad9;
-            border: 2px solid #079ad9;
-            color: white;
-            transform: scale(1.1, 1.1);
-        }
-        #steering .input-container .radio-button:checked + .radio-icon  svg {
-            fill: white;
-            background-color: #079ad9;
+    #steering {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
   	}
+    #steering .input-container {
+      position: relative;
+      height: 7rem;
+      width:  7rem;
+      margin: 0.5rem;
+  	}
+    #steering .input-container .radio-button {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width:  100%;
+      margin: 0;
+      cursor: pointer;
+  	}
+
+    #steering .input-container .radio-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width:  100%;
+      border: 4px solid #079ad9;
+      border-radius: 5px;
+      /*transition: transform 300ms ease;*/
+    }
+    #steering .input-container .radio-icon svg {
+      fill: #079ad9;
+      height: 60%;
+      width:  60%;
+    }
+
+    #steering .input-container .radio-button:checked + .radio-icon {
+      background-color: #079ad9;
+      border: 2px solid #079ad9;
+      color: white;
+      transform: scale(1.1, 1.1);
+    }
+    #steering .input-container .radio-button:checked + .radio-icon  svg {
+      fill: white;
+      background-color: #079ad9;
+    }
   </style>
 </head>
 

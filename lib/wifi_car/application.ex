@@ -1,4 +1,4 @@
-defmodule RcCar.Application do
+defmodule WifiCar.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -8,10 +8,10 @@ defmodule RcCar.Application do
   def start(_type, _args) do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: RcCar.Supervisor]
+    opts = [strategy: :one_for_one, name: WifiCar.Supervisor]
     children =
       [
-      {Plug.Cowboy, scheme: :http, plug: RcCar.Controller, options: [port: 8080]}
+          {Plug.Cowboy, scheme: :http, plug: WifiCar.Controller, options: [port: 8080]}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)
@@ -21,18 +21,18 @@ defmodule RcCar.Application do
   def children(:host) do
     [
       # Children that only run on the host
-      # Starts a worker by calling: RcCar.Worker.start_link(arg)
-      # {RcCar.Worker, arg},
+      # Starts a worker by calling: WifiCar.Worker.start_link(arg)
+      # {WifiCar.Worker, arg},
     ]
   end
 
   def children(_target) do
     [
-      RcCar.Vehicle
+      WifiCar.Vehicle
     ]
   end
 
   def target() do
-    Application.get_env(:rc_car, :target)
+    Application.get_env(:wifi_car, :target)
   end
 end
